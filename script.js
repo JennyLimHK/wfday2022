@@ -1,27 +1,22 @@
-AFRAME.registerComponent('video-controls', {
-	
-	init: function()
-	{
-		let video = document.querySelector("#video");
-
-		let videoDisplay = document.querySelector("#video-display");
-		let videoBorder  = document.querySelector("#video-border");
-		//let videoMesh  = videoDisplay.getObject3D("mesh");
-		let borderMesh = videoBorder.getObject3D("mesh");
-		
-		videoBorder.addEventListener("mousedown", function(event)
-		{
-			if ( video.paused )
-			{
-				video.play();
-				borderMesh.material.color.set("#004400");
-			}
-			else
-			{
-				video.pause();
-				borderMesh.material.color.set("#440000");
-			}
-		});
+AFRAME.registerComponent('vidhandler', {
+	// ...
+	init: function () {
+	  // Set up initial state and variables.
+	  this.toggle = false;
+	  this.vid = document.querySelector("#world-family-video")
+	  this.vid.pause();
+	},
+	tick:function(){
+	  
+  		if(this.el.object3D.visible == true){
+			if(!this.toggle){
+	   			this.toggle = true;
+	   			this.vid.play();
+	  		}
+		} else {
+			this.toggle = false;
+	  		this.vid.pause();
+	  	}
 	}
-	
+
 });

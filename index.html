@@ -6,16 +6,25 @@
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image-aframe.prod.js"></script>
   </head>
   <body>
+    <script src="script.js"></script>
     <a-scene mindar-image="imageTargetSrc: ./assets/targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-assets>
-        <video id="world-family-video" controls crossOrigin="anonymous" autoplay="true" loop="true" src="./assets/world-family-2022.mp4"></video>
+        <video id="world-family-video" crossOrigin="anonymous" loop="true" src="./assets/world-family-2022.mp4"></video>
         <img id="world-family-card" crossOrigin="anonymous" src="./assets/familyday-group-photo.jpg"></img>
         <audio id="world-family-hymn" crossOrigin="anonymous" src="./assets/we_believe_in_love.mp3"></img>
       </a-assets>
-      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-      <a-entity mindar-image-target="targetIndex: 0">
-        <a-plane src="#world-family-card" position="0 0 0" rotation="0 0 0"></a-plane>
-    </a-entity>
+      <a-camera position="0 0 0" look-controls="enabled: false" wasd-controls>
+        <a-cursor id="cursor" raycaster fuse="true" fusetimeout="3000"></a-cursor>
+      </a-camera>
+      <a-entity mindar-image-target="targetIndex: 0" vidhandler>
+          <a-plane 
+            material="src:#world-family-video"
+            position="0 0 0.4"
+            rotation="0 0 0"
+            width="1.2"
+          >
+          </a-plane>
+      </a-entity>
     </a-scene>
   </body>
 </html>
